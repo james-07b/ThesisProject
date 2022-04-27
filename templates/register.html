@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+<title>Recipe App</title>
+{% endblock %}
+
+{% block body %} 
+<div class="column">
+    <div class="register">
+            <form action="/register" method="POST" class = "forms">
+
+                <h1>Register</h1>
+                <input type="text" name="regUserName" id="regUserName" required placeholder="Enter a Username">
+                <input type="password" name="regPassword" id="regPassword"required placeholder="Enter a Password">
+                <input type="number" name="regAge" id="regAge"required placeholder="Enter your age">
+                <input type="number" min="1500" max="10000" name="regCals" id="regCals"required placeholder="Enter Daily Calories">
+                <p style="color: floralwhite;">Don't know your calories?</p><a href="{{ url_for('calories') }}">Check here</a>.
+                <input type="submit" value="Register">
+            </form>
+    </div>
+</div>
+{% endblock %}

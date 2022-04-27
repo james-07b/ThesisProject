@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Recipe App</title>
+{% endblock %}
+
+{% block body %}
+<div class="column">
+    <div class="update">
+            <form action="/update" method="POST" class = "forms">
+
+                <h1>Update your details</h1>
+                <h3>Username: {{session['Name']}}</h3>
+                <input type="text" name="newUsername" id="newUsername" required placeholder = "{{session['Name']}}">
+                <h3>Update your password</h3>
+                <input type="password" name="newPassword" id="newPassword"required placeholder="Enter a Password">
+                <h3>Update age</h3>
+                <input type="number" min="15" max="110" name="newAge" id="newAge"required placeholder="Enter your age">
+                <h3>Update Calories, currently: {{session['Calories']}}</h3>
+                <input type="number" min="500" max="10000" name="newCals" id="newCals"required placeholder="Enter Daily Calories">
+                <p style="color: floralwhite;">Don't know your calories?</p><a href="{{ url_for('calories') }}">Check here</a>.
+                <input type="submit" value="Update">
+            </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+<title>Recipe App</title>
+{% endblock %}
+
+{% block body %} 
+<div class="column">
+    <div class="addRecipe">
+            <form action="/create-recipe" method="POST" class = "forms">
+
+                <h1>Add recipes</h1>
+                <h3>Enter amount of recipes to create</h3>
+                <input type="number" min="1" max="10" name="num" id="num" required placeholder="5">
+                <input type="submit" value="Add recipes">
+            </form>
+    </div>
+</div>
+{% endblock %}

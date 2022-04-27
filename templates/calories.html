@@ -1,0 +1,166 @@
+
+{% extends 'base.html' %}
+
+{% block head %} 
+<title>Recipe App</title>
+{% endblock %}
+{% block body %} 
+    <div id="root"></div>
+    <div style="text-align: center;" class="topnav">
+      <h1>Cals Page</h1>
+      <!-- calculator -->
+      <h2>Calculate your BMR</h2>
+      <form id="bmr">
+        <fieldset>
+            <p>
+                <label for="quantity">Enter KG weight:</label>
+                <input type="number" id="weight" name="weight" value = "80" min="10" max="200">
+            </p>
+            <p>
+                <label for="quantity">Enter height in cm:</label>
+                <input type="number" id="height" name="height" value = "183" min="100" max="250">
+            </p>
+            <p>
+                <label for="quantity">Enter Age:</label>
+                <input type="number" id="age" name="age" value = "21" min="8" max="90">
+            </p>
+            <p>
+                <input type="submit" value="Submit">
+            </p>
+            <p>
+                <label for="result">Result</label>
+                or
+		            <input type="reset" value="Reset" />
+                <input id="result" name="result"/>
+            </p>
+        </fieldset>
+      </form>
+      
+      <h3>Calculate your active Calories</h3>
+      <h3>Active calories are determined by activity level</h3>
+      <p>
+        Not much activity, No exercise, desk job or much gym time – x1.2<br>
+        light activity, exercise 1-3 days a week – x1.3 <br>
+        active, exercise 5-6 days a week – x1.5 <br> 
+        very active, Training for specific sport – x1.8 <br> 
+      </p>
+      <form id="cals">
+        <fieldset>
+            <p>
+                <label for="quantity">Enter activity multiplier:</label>
+                <input type="number" id="activity" step=".1" name="activity">
+            </p>
+            <p>
+              <input type="submit" value="Submit">
+          </p>
+          <p>
+              <label for="result">Result</label>
+              or
+		          <input type="reset" value="Reset" />
+              <input id="result" name="result"/>
+          </p>
+        </fieldset>
+      </form>
+
+      <h3>Macros to Calories calculator</h3>
+        <div class="col-xs-6">
+          <h3>Macronutrients</h3>
+          <h5>Macronutrients are what make up your calorie intake.</h5>
+          <p>
+            Protein – 4kcal/g <br>
+            Carbohydrate – 4kcal/g <br>
+            Fat – 9kcal/g <br> 
+          </p>
+          <p>
+            Total Calorie Goal – (Protein intake + Minimum Fat Requirement) = Calories left over for carb and fat intake.
+          </p>
+          <p>
+            To lose weight remove 200-300 calories by decreasing fats and carbs more so than protein
+          </p>
+          <p>
+            To gain weight add 200-300 calories by increasing protein and fats and carbs
+          </p>
+         </div>
+         <div class="col-xs-6">
+           <h3>Macro calculator</h3>
+           <!-- calculator -->
+           <form id="calculateMacros">
+            <fieldset>
+	            <p>
+		            <label for="proteins">Proteins (gr)</label>
+		            <input id="proteins" name="proteins" type="number" placeholder="1g/pound of weight"/>
+	            </p>
+	            <p>
+		            <label for="carbs">Carbs (gr)</label>
+		            <input id="carbs" name="carbs" type="number" placeholder="ex: 20"/>
+	            </p>
+	            <p>
+		            <label for="fats">Fats (gr)</label>
+		            <input id="fats" name="fats" type="number" placeholder="ex: 25"/>
+	            </p>
+	            <p>
+		            <input type="submit" value="Calculate Macros" />
+		            or
+		            <input type="reset" value="Reset" />
+	            </p>
+	            <p>
+		            <label for="result">Result (kCal)</label>
+		            <input id="result" name="result"/>
+	            </p>
+              <br>
+              <br>
+              <br>
+              <br>
+             </fieldset>
+            </form>
+         </div>
+         <br>
+  <script>
+      (function () {
+	function calculateBmr(weight, height, age) {
+		weight = parseFloat(weight);
+		height = parseFloat(height);
+		age = parseFloat(age);
+		bmr = ((weight * 10) + (height * 6.25) - (age *5) + 5);
+    return bmr;
+	}
+
+	var bmr = document.getElementById("bmr");
+	if (bmr) {
+		bmr.onsubmit = function () {
+			this.result.value = calculateBmr(this.weight.value, this.height.value, this.age.value);
+			return false;
+		};
+	}
+	function calculateCals(activity) {
+		activity = parseFloat(activity);
+		cals = ((bmr * activity));
+    return cals;
+	}
+	var cals = document.getElementById("cals");
+	if (cals) {
+		cals.onsubmit = function () {
+			this.result.value = calculateCals(this.activity.value);
+			return false;
+		};
+	}
+}());
+
+(function () {
+	function MacrosToCalories(proteins, carbs, fats) {
+		proteins = parseFloat(proteins);
+		carbs = parseFloat(carbs);
+		fats = parseFloat(fats);
+		return ((proteins * 4) + (carbs * 4) + (fats * 9));
+	}
+
+	var calculateMacros = document.getElementById("calculateMacros");
+	if (calculateMacros) {
+		calculateMacros.onsubmit = function () {
+			this.result.value = MacrosToCalories(this.proteins.value, this.carbs.value, this.fats.value);
+			return false;
+		};
+	}
+}());
+  </script>
+{% endblock %}

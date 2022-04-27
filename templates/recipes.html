@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Recipe App</title>
+{% endblock %}
+
+{% block body %}
+<style>
+
+.userDetails{
+  position: absolute;
+  right: 0px;
+  width: 200px;
+  border: 3px solid darkslateblue;
+  padding: 5px;
+  color: black;
+  border: 25px;
+  margin-top: 25px;
+  margin-right: 10px;
+}
+.vl {
+  border-left: 6px solid darkslateblue;
+  height: 1000px;
+  float: left;
+}
+.recipes {
+  line-height: 1.8;
+}
+.column {
+  float: left;
+  width: 45%;
+  padding: 10px;
+}
+.column2 {
+  float: left;
+  width: 45%;
+  padding: 10px;
+}
+.row1:after,.row2::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+@media (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style>
+<div class="topnav" style="text-align: center;">
+    <h2>Your Calories are: {{session['Calories']}}</h2>
+    <h2>All recipe calories: {{session['allRecipes_cals']}}</h2>
+</div>
+<div>
+    <button class="userDetails"><a href="{{ url_for('index') }}">Return Home</a></button>
+</div>
+<br>
+<div class="recipes">
+    <h1 style="text-decoration: underline; text-align: center;">Your Recipes</h1>
+    <h2>Breakfast Recipe</h2>
+    <h3>Recipe Name: {{session['recipe_name']}}</h3>
+    <h3>Calories: {{session['recipe_calories']}}</h3>
+    <h3>Method: {{session['recipe_method']}}</h3>
+    <h3>Ingredients: {{session['recipe_ingr']}}</h3>
+    <h3>Nutrients {{session['recipe_nutr']}}</h3>
+    <h3>Serving Size: {{session['recipe_serving']}}</h3>
+    <br>
+    <hr>
+    <div class="row1">
+        <div class="column">
+            <h2>2nd Recipe</h2>
+            <h3>Recipe Name: {{session['recipe_name2']}}</h3>
+            <h3>Calories: {{session['recipe_calories2']}}</h3>
+            <h3>Method: {{session['recipe_method2']}}</h3>
+            <h3>Ingredients: {{session['recipe_ingr2']}}</h3>
+            <h3>Nutrients {{session['recipe_nutr2']}}</h3>
+            <h3>Serving Size: {{session['recipe_serving2']}}</h3>
+        </div>
+        <div class="vl"></div>
+        <div class="column">
+            <h2>3rd Recipe</h2>
+            <h3>Recipe Name: {{session['recipe_name3']}}</h3>
+            <h3>Calories: {{session['recipe_calories3']}}</h3>
+            <h3>Method: {{session['recipe_method3']}}</h3>
+            <h3>Ingredients: {{session['recipe_ingr3']}}</h3>
+            <h3>Nutrients: {{session['recipe_nutr3']}}</h3>
+            <h3>Serving Size: {{session['recipe_serving3']}}</h3>
+        </div>
+    </div>
+    <hr>
+    <div class="row2">
+        <div class="column2">
+            <h2>4th Recipe</h2>
+            <h3>Recipe Name: {{session['recipe_name4']}}</h3>
+            <h3>Calories: {{session['recipe_calories4']}}</h3>
+            <h3>Method: {{session['recipe_method4']}}</h3>
+            <h3>Ingredients: {{session['recipe_ingr4']}}</h3>
+            <h3>Nutrients: {{session['recipe_nutr4']}}</h3>
+            <h3>Serving Size: {{session['recipe_serving4']}}</h3>
+        </div>
+        <div class="vl"></div>
+        <div class="column2">
+            <h2>5th Recipe</h2>
+            <h3>Recipe Name: {{session['recipe_name5']}}</h3>
+            <h3>Calories: {{session['recipe_calories5']}}</h3>
+            <h3>Method: {{session['recipe_method5']}}</h3>
+            <h3>Ingredients: {{session['recipe_ingr5']}}</h3>
+            <h3>Nutrients: {{session['recipe_nutr5']}}</h3>
+            <h3>Serving Size: {{session['recipe_serving5']}}</h3>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

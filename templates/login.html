@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+<title>Recipe App</title>
+{% endblock %}
+
+{% block body %} 
+
+</style>
+<div class="column">
+    <div class="login">
+            <form action="/login" method="POST" class="forms">
+                <h1>Login</h1>
+                <input type="text" name="Name" id="Name" required placeholder="Username">
+                <input type="password" name="Password" id="Password" required placeholder="Password">
+                <input type="submit" value="Login">
+                <p style="color: floralwhite;">Not registered?</p><a href="{{ url_for('register') }}">Create account here</a>.
+            </form>
+           
+    </div>
+</div>
+
+{% endblock %}
